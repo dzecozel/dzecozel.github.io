@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>C practice solution (2) - DL</title>
+
+  
+    <meta name="description" content="C语言每日隔几天刷题（2）【问题描述】 现有26名同学(使用‘A’~‘Z’进行标记)围坐一圈。从键盘输入一个正整数k(1&lt;&#x3D;k&lt;&#x3D;10)，现在从标记为‘A’的同学开始报数如果所报数字能够被k整除，则该同学退出圈中，剩余同学重新开始游戏。报数的规则如下： 1)每一次开始游戏均从1开始报数; 2)每一名同学所报数字为前一个同学所报数字加1。 请按照同学出圈的顺序输出其标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C practice solution (2)">
+<meta property="og:url" content="http://example.com/2022/04/06/C-practice-solution-2/index.html">
+<meta property="og:site_name" content="DL">
+<meta property="og:description" content="C语言每日隔几天刷题（2）【问题描述】 现有26名同学(使用‘A’~‘Z’进行标记)围坐一圈。从键盘输入一个正整数k(1&lt;&#x3D;k&lt;&#x3D;10)，现在从标记为‘A’的同学开始报数如果所报数字能够被k整除，则该同学退出圈中，剩余同学重新开始游戏。报数的规则如下： 1)每一次开始游戏均从1开始报数; 2)每一名同学所报数字为前一个同学所报数字加1。 请按照同学出圈的顺序输出其标">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-06T12:15:33.000Z">
+<meta property="article:modified_time" content="2022-04-07T11:42:13.163Z">
+<meta property="article:author" content="dzecozel">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://tse1-mm.cn.bing.net/th/id/R-C.29a0d3484e77ddcf1a23cfefa155910d?rik=qXlNUgnUBJkt4w&riu=http%3a%2f%2fimg.crcz.com%2fallimg%2f202001%2f07%2f1578389091848801.jpg&ehk=3Yiz07LVcCVC03VYxmCqgEodSumxPOrS7IcoJMPXBvs%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">DL</div></a></div>
+<nav class="menu dis-select"></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-06T12:15:33.000Z">2022-04-06</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>C practice solution (2)</span></h1>
+<h1 id="C语言每日隔几天刷题（2）"><a href="#C语言每日隔几天刷题（2）" class="headerlink" title="C语言每日隔几天刷题（2）"></a>C语言<del>每日</del>隔几天刷题（2）</h1><p>【问题描述】</p>
+<p>现有26名同学(使用‘A’~‘Z’进行标记)围坐一圈。从键盘输入一个正整数k(1&lt;&#x3D;k&lt;&#x3D;10)，现在从标记为‘A’的同学开始报数如果所报数字能够被k整除，则该同学退出圈中，剩余同学重新开始游戏。报数的规则如下：</p>
+<p>1)每一次开始游戏均从1开始报数;</p>
+<p>2)每一名同学所报数字为前一个同学所报数字加1。</p>
+<p>请按照同学出圈的顺序输出其标记。</p>
+<p>【输入形式】</p>
+<p>1个正整数。</p>
+<p>【输出形式】</p>
+<p>26个字母构成的字符串。</p>
+<p>【样例输入】</p>
+<p>8</p>
+<p>【样例输出】</p>
+<p>HPXFOYISCNAMBRGWTLKQVEDUJZ</p>
+<p>【思路分析】</p>
+<ol>
+<li><p>先建立两个26位的字符串，用于储存二十六个字母，一个用于判断，一个在处理时使用。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> cv[N] = &#123; <span class="literal">NULL</span> &#125;, av[N] = &#123; <span class="literal">NULL</span> &#125;;</span><br><span class="line">	<span class="type">int</span> bv[N], zv[N] = &#123; <span class="number">0</span> &#125;, i, j, z, m, k;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;k);</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">		cv[i] = (<span class="type">char</span>)(i + <span class="number">65</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对用于处理得组别进行数字同步1~k编号，然后对数字进行处理，若该字符对应的数字为k，则输出字符并将用于判断中的该字符化为<code>NULL</code>。</p>
+<p>注意：a. 对应字符最后一位不一定是k，需要单独留一个数来保存字符。</p>
+<p>​            b. 为了能够作用于判断用字符串，也需要单独记录下对应数字。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span> (; ded(cv, N) != <span class="number">0</span>;)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">		&#123;</span><br><span class="line">            <span class="keyword">if</span> (cv[i] != <span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				av[j] = cv[i];</span><br><span class="line">				zv[j] = i;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">            	<span class="keyword">if</span> (m == <span class="number">0</span>)</span><br><span class="line">			z = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			z = m;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; j; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			bv[i] = z;</span><br><span class="line">			z++;</span><br><span class="line">			<span class="keyword">if</span> (z == k + <span class="number">1</span>)</span><br><span class="line">				z -= k;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;j;i++)</span><br><span class="line">            		m = z;</span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; j; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (bv[i] == k)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, av[i]);</span><br><span class="line">				cv[zv[i]] = <span class="literal">NULL</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">            	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断函数<code>ded</code></p>
+</li>
+</ol>
+   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">ded</span><span class="params">(<span class="type">char</span> v[], <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> i, j = <span class="number">0</span>, d;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		d = <span class="built_in">isupper</span>(v[i]);</span><br><span class="line">		<span class="keyword">if</span> (d != <span class="number">0</span>)</span><br><span class="line">			j++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>总结：具体思路</p>
+</li>
+<li><p>如果字符串中仍有非空字符则排序，去除已经改为空的字符。</p>
+</li>
+<li><p>对已有字符进行1~k编号。</p>
+</li>
+<li><p>输出k代表的字符，并将该字符转化为<code>NULL</code>.</p>
+</li>
+</ol>
+<hr>
+<p>总结：难度一般，但是思路需要清晰，尤其是处理字符和标号一一对应的关系。另外需要注意添加标记字符。（能不能用指针实现？）</p>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/03/30/Model-Gaming-3/">Model Gaming (3)<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="http://example.com/">@dzecozel</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
